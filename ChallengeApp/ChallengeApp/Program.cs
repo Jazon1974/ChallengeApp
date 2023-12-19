@@ -1,16 +1,24 @@
-﻿String name = "Ewa";
-String sex = "kobieta";
-var age = 30;
+﻿using System.ComponentModel.Design;
+using System.Globalization;
 
-if (sex == "kobieta" && age < 30)
+int number = 4566;
+string numberInString = number.ToString();
+char[] letters = numberInString.ToArray();
+Console.WriteLine("Wyniki dla liczby: " + number);
+
+for (var digit = 0; digit < 10; digit++)
 {
-    Console.WriteLine("Kobieta poniżej 30 lat");
+    var i = 0;
+    foreach (char c in letters)
+    {
+        string numInString = digit.ToString();
+        char[] lettersDigit = numInString.ToArray();
+        var d = lettersDigit[0];
+        if (d == c)
+        {
+            i++;
+        }
+    }
+    Console.WriteLine(digit + "=> " + i);
 }
-else if (name == "Ewa" && age == 30)
-{
-    Console.WriteLine("Ewa, lat 30");
-}
-else if (sex == "mężczyzna" && age < 18)
-{
-    Console.WriteLine("Niepełnoletni mężczyzna");
-}
+
