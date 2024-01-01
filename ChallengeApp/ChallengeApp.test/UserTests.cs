@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 
 namespace ChallengeApp.tests
 {
-    public class Tests
+    public class UserTests
     {
         [Test]
         public void WhenUserCollectTwoScorses_ShouldCorrectSumAsResult()
