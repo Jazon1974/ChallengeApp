@@ -6,7 +6,7 @@ namespace ChallengeApp.tests
     public class UserTests
     {
         [Test]
-        public void WhenUserCollectTwoScorses_ShouldCorrectSumAsResult()
+        public void WhenUserCollectTwoScorses_ShouldCorrumAsResult()
         {
             // arrange
             var user1 = new User("Jacek", "12345");
