@@ -2,10 +2,10 @@
 
 namespace ChallengeApp.test
 {
-    public class EmployeeTest
+    public class StatisticTests
     {
         [Test]
-        public void valueTest()
+        public void EmployeeStatisticTest()
         {
             //arrange
 
