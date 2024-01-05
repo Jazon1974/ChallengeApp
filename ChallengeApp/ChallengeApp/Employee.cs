@@ -42,19 +42,19 @@ namespace ChallengeApp
         public void AddGrade(double grade)
         {
             float result = (float)grade;
-            this.grades.Add(result);
+            this.AddGrade(result);
         }
 
         public void AddGrade(decimal grade)
         {
             float result = (float)grade;
-            this.grades.Add(result);
+            this.AddGrade(result);
         }
 
         public void AddGrade(long grade)
         {
             float result = (float)grade;
-            this.grades.Add(result);
+            this.AddGrade(result);
         }
 
         public Statistics GetStatistics()
