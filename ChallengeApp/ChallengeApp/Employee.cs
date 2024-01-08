@@ -40,6 +40,7 @@ namespace ChallengeApp
                 Console.WriteLine("String is not float");
             }
         }
+        
 
         public void AddGrade(double grade)
         {
@@ -68,9 +69,12 @@ namespace ChallengeApp
 
           foreach (var grade in this.grades)
           {
-              statistics.Max = Math.Max(statistics.Max, grade);
-              statistics.Min = Math.Min(statistics.Min, grade);
-              statistics.Avarge += grade;
+                if (grade >= 0)
+                {
+                    statistics.Max = Math.Max(statistics.Max, grade);
+                    statistics.Min = Math.Min(statistics.Min, grade);
+                    statistics.Avarge += grade;
+                }
           }
           statistics.Avarge /= this.grades.Count;
 
@@ -78,91 +82,6 @@ namespace ChallengeApp
           return statistics;
 
          }
-        public Statistics GetStatisticsWithWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Avarge = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            var index = 0;
-
-            var liczba = this.grades[index];
-            while (index < this.grades.Count)
-            {
-                liczba = this.grades[index];
-                statistics.Max = Math.Max(statistics.Max, liczba);
-                statistics.Min = Math.Min(statistics.Min, liczba);
-                statistics.Avarge += liczba;
-                index++;
-            }
-            statistics.Avarge /= this.grades.Count;
-
-
-            return statistics;
-
-        }
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Avarge = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            var index = 0;
-
-            do
-            {
-                var liczba = this.grades[index];
-                statistics.Max = Math.Max(statistics.Max, liczba);
-                statistics.Min = Math.Min(statistics.Min, liczba);
-                statistics.Avarge += liczba;
-                index++;
-            }
-            while (index < this.grades.Count);
-
-            statistics.Avarge /= this.grades.Count;
-
-            return statistics;
-
-        }
-        public Statistics GetStatisticsWithFor()
-        {
-            var statistics = new Statistics();
-            statistics.Avarge = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            float liczba = 0;
-            for (int index = 0; index < this.grades.Count; ++index)
-            {
-                liczba = this.grades[index];
-                statistics.Max = Math.Max(statistics.Max, liczba);
-                statistics.Min = Math.Min(statistics.Min, liczba);
-                statistics.Avarge += liczba;
-            }
-            statistics.Avarge /= this.grades.Count;
-
-
-            return statistics;
-
-        }
-        public Statistics GetStatisticsWithForEach()
-        {
-            var statistics = new Statistics();
-            statistics.Avarge = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            foreach (var grade in this.grades)
-            {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Avarge += grade;
-            }
-            statistics.Avarge /= this.grades.Count;
-
-
-            return statistics;
-
-        }
+        
     }
 }
