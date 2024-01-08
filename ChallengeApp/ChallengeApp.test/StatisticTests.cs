@@ -14,7 +14,7 @@ namespace ChallengeApp.test
             employee.AddGrade(6);
 
             //act
-            var statistic = employee.GetStatistics();
+            var statistic = employee.GetStatisticsWithWhile();
 
             // assert
             Assert.AreEqual(2, statistic.Min);
@@ -30,7 +30,7 @@ namespace ChallengeApp.test
             employee.AddGrade(6);
 
             //act
-            var statistic = employee.GetStatistics();
+            var statistic = employee.GetStatisticsWithWhile();
 
             // assert
             Assert.AreEqual(16, statistic.Max);
@@ -46,7 +46,7 @@ namespace ChallengeApp.test
             employee.AddGrade(6);
 
             //act
-            var statistic = employee.GetStatistics();
+            var statistic = employee.GetStatisticsWithWhile();
 
             // assert
             Assert.AreEqual(8, statistic.Avarge);
