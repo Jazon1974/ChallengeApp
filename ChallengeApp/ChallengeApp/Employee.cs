@@ -7,6 +7,7 @@ namespace ChallengeApp
 {
     public class Employee
     {
+        private readonly char sex = 'M';
 
         private List<float> grades = new List<float>();
 
@@ -17,6 +18,7 @@ namespace ChallengeApp
         {
             this.Name = name;
             this.Surname = surname;
+            this.sex = 'K';
         }
 
         public string Name { get; private set; }
@@ -25,13 +27,14 @@ namespace ChallengeApp
 
         public void AddGrade(float grade)
         {
+
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                throw new Exception("Number out of range 0-100");
             }
         }
 
@@ -73,35 +76,31 @@ namespace ChallengeApp
 
                     switch (input[0])
                     {
-                        case 'A':
+                        case 'A' or 'a':
                             this.grades.Add(100);
                             break;
-                        case 'B':
+                        case 'B' or 'b':
                             this.grades.Add(80);
                             break;
-                        case 'C':
+                        case 'C' or 'c':
                             this.grades.Add(60);
                             break;
-                        case 'D':
+                        case 'D' or 'd':
                             this.grades.Add(40);
                             break;
-                        case 'E':
+                        case 'E' or 'e':
                             this.grades.Add(20);
                             break;
                         default:
-
-                            Console.WriteLine("Wrong Letter");
-                            break;
+                            throw new Exception("Wrong letter. Letters A-F allowed");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Wrong Letter");
+                    throw new Exception("Wrong letter. Letters A-E allowed");
                 }
             }
-
         }
-
 
         public Statistics GetStatistics()
         {
