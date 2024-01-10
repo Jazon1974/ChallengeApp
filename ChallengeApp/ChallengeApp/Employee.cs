@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.ComponentModel.Design;
 
 namespace ChallengeApp
 {
@@ -8,6 +9,10 @@ namespace ChallengeApp
     {
 
         private List<float> grades = new List<float>();
+
+        public Employee()
+        {
+        }
         public Employee(string name, string surname)
         {
             this.Name = name;
@@ -29,18 +34,12 @@ namespace ChallengeApp
                 Console.WriteLine("invalid grade value");
             }
         }
-        public void AddGrade(string grade)
+
+        public void AddGrade(int grade)
         {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else
-            {
-                Console.WriteLine("String is not float");
-            }
+            float gradeAsFloat = grade;
+            this.AddGrade(gradeAsFloat);
         }
-        
 
         public void AddGrade(double grade)
         {
@@ -60,28 +59,93 @@ namespace ChallengeApp
             this.AddGrade(result);
         }
 
+        public void AddGrade(string input)
+        {
+            if (float.TryParse(input, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else
+            {
+                int longInput = input.Length;
+                if (longInput == 1)
+                {
+
+                    switch (input[0])
+                    {
+                        case 'A':
+                            this.grades.Add(100);
+                            break;
+                        case 'B':
+                            this.grades.Add(80);
+                            break;
+                        case 'C':
+                            this.grades.Add(60);
+                            break;
+                        case 'D':
+                            this.grades.Add(40);
+                            break;
+                        case 'E':
+                            this.grades.Add(20);
+                            break;
+                        default:
+
+                            Console.WriteLine("Wrong Letter");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong Letter");
+                }
+            }
+
+        }
+
+
         public Statistics GetStatistics()
         {
-          var statistics = new Statistics();
-          statistics.Avarge = 0;
-          statistics.Max = float.MinValue;
-          statistics.Min = float.MaxValue;
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
 
-          foreach (var grade in this.grades)
-          {
+            foreach (var grade in this.grades)
+            {
                 if (grade >= 0)
                 {
                     statistics.Max = Math.Max(statistics.Max, grade);
                     statistics.Min = Math.Min(statistics.Min, grade);
-                    statistics.Avarge += grade;
+                    statistics.Average += grade;
                 }
-          }
-          statistics.Avarge /= this.grades.Count;
+            }
+            statistics.Average /= this.grades.Count;
 
+            switch (statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                case var average when average >= 0:
+                    statistics.AverageLetter = 'E';
+                    break;
+                default:
+                    statistics.Average = 'F';
+                    break;
+            }
 
-          return statistics;
+            return statistics;
 
-         }
-        
+        }
+
     }
 }
