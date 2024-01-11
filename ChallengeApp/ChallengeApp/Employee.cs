@@ -92,7 +92,7 @@ namespace ChallengeApp
                             this.grades.Add(20);
                             break;
                         default:
-                            throw new Exception("Wrong letter. Letters A-F allowed");
+                            throw new Exception("Wrong letter. Letters A-E allowed");
                     }
                 }
                 else
@@ -134,12 +134,15 @@ namespace ChallengeApp
                 case var average when average >= 20:
                     statistics.AverageLetter = 'D';
                     break;
-                case var average when average >= 0:
+                case var average when average > 0:
                     statistics.AverageLetter = 'E';
                     break;
                 default:
-                    statistics.Average = 'F';
+                    statistics.AverageLetter = 'F';
                     break;
+                     
+                       
+                    
             }
 
             return statistics;

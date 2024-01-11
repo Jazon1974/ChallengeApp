@@ -1,4 +1,5 @@
 ﻿using ChallengeApp;
+using System.ComponentModel.Design;
 
 Console.WriteLine("Witamy w Programie XYZ do oceny Pracowników");
 Console.WriteLine("==============================================");
@@ -11,19 +12,19 @@ var employee = new Employee();
 while (true)
 {
     Console.WriteLine("Podaj kolejną ocenę pracownika:");
-    var input = Console.ReadLine();
+    var grade = Console.ReadLine();
 
-    if (input == "q")
+    if (grade == "q")
     {
         break;
     }
     try
     {
-        employee.AddGrade(input);
+        employee.AddGrade(grade);
     }
     catch (Exception e)
     {
-        Console.WriteLine($"{e.Message}");
+        Console.WriteLine($"Exception: {e.Message}");
     }
 }
 
@@ -32,3 +33,6 @@ Console.WriteLine($"Avarage: {statistics.Average}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");
 Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
+
+
+
