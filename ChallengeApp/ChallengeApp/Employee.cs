@@ -5,25 +5,18 @@ using System.ComponentModel.Design;
 
 namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        private readonly char sex = 'M';
-
         private List<float> grades = new List<float>();
 
-        public Employee()
-        {
-        }
-        public Employee(string name, string surname)
-        {
-            this.Name = name;
-            this.Surname = surname;
-            this.sex = 'K';
-        }
 
-        public string Name { get; private set; }
+        public Employee(string name, string surname,char sex,int age)
+            : base (name, surname,sex,age)
+        {
+            
+            }
 
-        public string Surname { get; private set; }
+        
 
         public void AddGrade(float grade)
         {
