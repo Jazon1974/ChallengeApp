@@ -6,7 +6,8 @@ Console.WriteLine("==============================================");
 Console.WriteLine("Jeżeli chcesz wyjsć wpisz zamiast oceny literę q");
 Console.WriteLine();
 
-var employee = new Employee();
+//Employee employee = new Employee();
+Supervisor supervisor = new Supervisor();
 
 
 while (true)
@@ -20,7 +21,8 @@ while (true)
     }
     try
     {
-        employee.AddGrade(grade);
+        //employee.AddGrade(grade);
+        supervisor.AddGrade(grade);
     }
     catch (Exception e)
     {
@@ -28,7 +30,9 @@ while (true)
     }
 }
 
-var statistics = employee.GetStatistics();
+//var statistics = employee.GetStatistics();
+var statistics = supervisor.GetStatistics();
+
 Console.WriteLine($"Avarage: {statistics.Average}");
 Console.WriteLine($"Min: {statistics.Min}");
 Console.WriteLine($"Max: {statistics.Max}");

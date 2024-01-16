@@ -1,22 +1,20 @@
 ﻿
-
-using System;
-using System.ComponentModel.Design;
-
 namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         private List<float> grades = new List<float>();
 
+        public Employee() { }
+        public Employee(string name, string surname)
 
-        public Employee(string name, string surname,char sex,int age)
-            : base (name, surname,sex,age)
         {
-            
-            }
+            this.Name = name;
+            this.Surname = surname;
+        }
 
-        
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
 
         public void AddGrade(float grade)
         {
@@ -133,9 +131,9 @@ namespace ChallengeApp
                 default:
                     statistics.AverageLetter = 'F';
                     break;
-                     
-                       
-                    
+
+
+
             }
 
             return statistics;
