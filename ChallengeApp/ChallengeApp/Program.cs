@@ -6,7 +6,7 @@ Console.WriteLine("==============================================");
 Console.WriteLine("Jeżeli chcesz wyjsć wpisz zamiast oceny literę q");
 Console.WriteLine();
 
-//Employee employee = new Employee();
+Employee employee = new Employee();
 Supervisor supervisor = new Supervisor();
 
 
@@ -21,7 +21,7 @@ while (true)
     }
     try
     {
-        //employee.AddGrade(grade);
+       //employee.AddGrade(grade);
         supervisor.AddGrade(grade);
     }
     catch (Exception e)

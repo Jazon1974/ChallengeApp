@@ -53,34 +53,34 @@ namespace ChallengeApp
             this.AddGrade(result);
         }
 
-        public void AddGrade(string input)
+        public void AddGrade(string grade)
         {
-            if (float.TryParse(input, out float result))
+            if (float.TryParse(grade, out float result))
             {
                 this.AddGrade(result);
             }
             else
             {
-                int longInput = input.Length;
+                int longInput = grade.Length;
                 if (longInput == 1)
                 {
 
-                    switch (input[0])
+                    switch (grade[0])
                     {
                         case 'A' or 'a':
-                            this.grades.Add(100);
+                            this.AddGrade(100);
                             break;
                         case 'B' or 'b':
-                            this.grades.Add(80);
+                            this.AddGrade(80);
                             break;
                         case 'C' or 'c':
-                            this.grades.Add(60);
+                            this.AddGrade(60);
                             break;
                         case 'D' or 'd':
-                            this.grades.Add(40);
+                            this.AddGrade(40);
                             break;
                         case 'E' or 'e':
-                            this.grades.Add(20);
+                            this.AddGrade(20);
                             break;
                         default:
                             throw new Exception("Wrong letter. Letters A-E allowed");
