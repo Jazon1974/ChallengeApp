@@ -26,7 +26,6 @@
             this.AddGrade(gradeAsFloat);
         }
 
-
         public override void AddGrade(string grade)
         {
             if (float.TryParse(grade, out float result))
@@ -92,9 +91,8 @@
         }
 
         public override Statistics GetStatistics()
-        
         {
-           // get
+
             {
                 var statistics = new Statistics();
                 statistics.Average = 0;
@@ -132,9 +130,6 @@
                     default:
                         statistics.AverageLetter = 'F';
                         break;
-
-
-
                 }
 
                 return statistics;

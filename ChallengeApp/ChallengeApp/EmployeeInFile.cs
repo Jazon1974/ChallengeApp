@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
@@ -9,7 +7,7 @@ namespace ChallengeApp
             : base(name, surname)
         {
         }
-     
+
         public override void AddGrade(int grade)
         {
             using (var writer = File.AppendText(fileName))
@@ -26,7 +24,16 @@ namespace ChallengeApp
             {
                 if (float.TryParse(grade, out float gradeAsFloat))
                 {
-                    writer.WriteLine(gradeAsFloat);
+
+                    if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
+                    {
+                        this.AddGrade(gradeAsFloat);
+                        writer.WriteLine(gradeAsFloat);
+                    }
+                    else
+                    {
+                        throw new Exception("Number out of range 0-100");
+                    }
                 }
                 else
                 {
@@ -37,19 +44,24 @@ namespace ChallengeApp
                         switch (grade1)
                         {
                             case 'A' or 'a':
-                                this.AddGrade(100);
+                                grades.Add(100);
+                                writer.WriteLine(100);
                                 break;
                             case 'B' or 'b':
-                                this.AddGrade(80);
+                                grades.Add(80);
+                                writer.WriteLine(80);
                                 break;
                             case 'C' or 'c':
-                                this.AddGrade(60);
+                                grades.Add(60);
+                                writer.WriteLine(60);
                                 break;
                             case 'D' or 'd':
-                                this.AddGrade(40);
+                                grades.Add(40);
+                                writer.WriteLine(40);
                                 break;
                             case 'E' or 'e':
-                                this.AddGrade(20);
+                                grades.Add(20);
+                                writer.WriteLine(20);
                                 break;
                             default:
                                 throw new Exception("Wrong letter. Letters A-E allowed");
@@ -68,7 +80,16 @@ namespace ChallengeApp
             using (var writer = File.AppendText(fileName))
             {
                 float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
+                if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
+                {
+                    this.AddGrade(gradeAsFloat);
+                    writer.WriteLine(gradeAsFloat);
+                }
+                else
+                {
+                    throw new Exception("Number out of range 0-100");
+                }
+
             }
         }
 
@@ -77,7 +98,15 @@ namespace ChallengeApp
             using (var writer = File.AppendText(fileName))
             {
                 float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
+                if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
+                {
+                    this.AddGrade(gradeAsFloat);
+                    writer.WriteLine(gradeAsFloat);
+                }
+                else
+                {
+                    throw new Exception("Number out of range 0-100");
+                }
             }
         }
 
@@ -86,8 +115,19 @@ namespace ChallengeApp
             using (var writer = File.AppendText(fileName))
             {
                 float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
+                if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
+                {
+                    this.AddGrade(gradeAsFloat);
+                    writer.WriteLine(gradeAsFloat);
+                }
+                else
+                {
+                    throw new Exception("Number out of range 0-100");
+                }
             }
+        }
+        public override void AddGrade(float grade)
+        {
         }
 
         public override void AddGrade(char grade)
@@ -95,7 +135,15 @@ namespace ChallengeApp
             using (var writer = File.AppendText(fileName))
             {
                 float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
+                if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
+                {
+                    this.AddGrade(gradeAsFloat);
+                    writer.WriteLine(gradeAsFloat);
+                }
+                else
+                {
+                    throw new Exception("Number out of range 0-100");
+                }
             }
         }
 
@@ -138,12 +186,5 @@ namespace ChallengeApp
             }
             return result;
         }
-
-        public override void AddGrade(float input)
-        {
-        
-        }
-
     }
-
 }
