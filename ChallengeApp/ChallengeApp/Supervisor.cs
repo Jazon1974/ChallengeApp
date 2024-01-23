@@ -1,27 +1,40 @@
 ﻿namespace ChallengeApp
 {
-    public class Supervisor : Employee
+    public class Supervisor : EmployeeBase
     {
 
         private List<float> grades = new List<float>();
 
-        public Supervisor()
-        {
+       // public Supervisor()
+       // {
 
-        }
+       // }
 
          public Supervisor(string name, string surname)
+            : base(name, surname)
           {
 
           }
           public string Name { get; private set; }
           public string Surname { get; private set; }
 
-        public void AddGrade(string grade)
-        {
+        
 
+        public override void AddGrade(float grade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddGrade(int grade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddGrade(string grade)
+        
             {
-                switch (grade) {
+                switch (grade)
+                {
                     case "6":
                         this.AddGrade(100);
                         break;
@@ -75,47 +88,74 @@
                         throw new Exception("Wrong number. Number 1-6 allowed");
                 }
 
-                 Statistics GetStatistics()
+
+            
+        }
+
+        public override void AddGrade(double grade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddGrade(decimal grade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddGrade(long grade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddGrade(char grade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Statistics GetStatistics()
+        
+        {
+        //    get
+            {
+
+                var statistics = new Statistics();
+                statistics.Average = 0;
+                statistics.Max = float.MinValue;
+                statistics.Min = float.MaxValue;
+
+                foreach (var grade in this.grades)
                 {
-                    var statistics = new Statistics();
-                    statistics.Average = 0;
-                    statistics.Max = float.MinValue;
-                    statistics.Min = float.MaxValue;
-
-                    foreach (var grade in this.grades)
+                    if (grade >= 0)
                     {
-                        if (grade >= 0)
-                        {
-                            statistics.Max = Math.Max(statistics.Max, grade);
-                            statistics.Min = Math.Min(statistics.Min, grade);
-                            statistics.Average += grade;
-                        }
+                        statistics.Max = Math.Max(statistics.Max, grade);
+                        statistics.Min = Math.Min(statistics.Min, grade);
+                        statistics.Average += grade;
                     }
-                    statistics.Average /= this.grades.Count;
-
-                    switch (statistics.Average)
-                    {
-                        case var average when average >= 80:
-                            statistics.AverageLetter = 'A';
-                            break;
-                        case var average when average >= 60:
-                            statistics.AverageLetter = 'B';
-                            break;
-                        case var average when average >= 40:
-                            statistics.AverageLetter = 'C';
-                            break;
-                        case var average when average >= 20:
-                            statistics.AverageLetter = 'D';
-                            break;
-                        case var average when average > 0:
-                            statistics.AverageLetter = 'E';
-                            break;
-                        default:
-                            statistics.AverageLetter = 'F';
-                            break;
-                    }
-                    return statistics;
                 }
+                statistics.Average /= this.grades.Count;
+
+                switch (statistics.Average)
+                {
+                    case var average when average >= 80:
+                        statistics.AverageLetter = 'A';
+                        break;
+                    case var average when average >= 60:
+                        statistics.AverageLetter = 'B';
+                        break;
+                    case var average when average >= 40:
+                        statistics.AverageLetter = 'C';
+                        break;
+                    case var average when average >= 20:
+                        statistics.AverageLetter = 'D';
+                        break;
+                    case var average when average > 0:
+                        statistics.AverageLetter = 'E';
+                        break;
+                    default:
+                        statistics.AverageLetter = 'F';
+                        break;
+                }
+                return statistics;
             }
         }
     } }

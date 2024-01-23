@@ -1,28 +1,31 @@
 ﻿using ChallengeApp;
-using System.ComponentModel.Design;
 
 Console.WriteLine("Witamy w Programie XYZ do oceny Pracowników");
 Console.WriteLine("==============================================");
 Console.WriteLine("Jeżeli chcesz wyjsć wpisz zamiast oceny literę q");
 Console.WriteLine();
+var employee = new EmployeeInFile("Jacek", "Jaxiewicz");
+var statistics = employee.GetStatistics();
 
-Employee employee = new Employee();
-Supervisor supervisor = new Supervisor();
+employee.ToString();
+Console.WriteLine($"Avarage1: {statistics.Average}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
+Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
 
 
 while (true)
 {
     Console.WriteLine("Podaj kolejną ocenę pracownika:");
-    var grade = Console.ReadLine();
+    var input = Console.ReadLine();
 
-    if (grade == "q")
+    if (input == "q")
     {
         break;
     }
     try
     {
-       //employee.AddGrade(grade);
-        supervisor.AddGrade(grade);
+       employee.AddGrade(input);
     }
     catch (Exception e)
     {
@@ -30,13 +33,12 @@ while (true)
     }
 }
 
-//var statistics = employee.GetStatistics();
-var statistics = supervisor.GetStatistics();
+var statistics2 = employee.GetStatistics();
 
-Console.WriteLine($"Avarage: {statistics.Average}");
-Console.WriteLine($"Min: {statistics.Min}");
-Console.WriteLine($"Max: {statistics.Max}");
-Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
+Console.WriteLine($"Avarage1: {statistics2.Average}");
+Console.WriteLine($"Min: {statistics2.Min}");
+Console.WriteLine($"Max: {statistics2.Max}");
+Console.WriteLine($"AvargeLetter: {statistics2.AverageLetter}");
 
 
 
