@@ -14,7 +14,15 @@
 
             {
                 float gradeAsFloat = grade;
-                writer.WriteLine(gradeAsFloat);
+                if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
+                {
+                    this.AddGrade(gradeAsFloat);
+                    writer.WriteLine(gradeAsFloat);
+                }
+                else
+                {
+                    throw new Exception("Number out of range 0-100");
+                }
             }
         }
 
@@ -183,6 +191,27 @@
                     }
                 }
                 result.Average /= this.grades.Count;
+                switch (result.Average)
+                {
+                    case var average when average >= 80:
+                        result.AverageLetter = 'A';
+                        break;
+                    case var average when average >= 60:
+                        result.AverageLetter = 'B';
+                        break;
+                    case var average when average >= 40:
+                        result.AverageLetter = 'C';
+                        break;
+                    case var average when average >= 20:
+                        result.AverageLetter = 'D';
+                        break;
+                    case var average when average > 0:
+                        result.AverageLetter = 'E';
+                        break;
+                    default:
+                        result.AverageLetter = 'F';
+                        break;
+                }
             }
             return result;
         }
