@@ -5,13 +5,13 @@ Console.WriteLine("==============================================");
 Console.WriteLine("Jeżeli chcesz wyjsć wpisz zamiast oceny literę q");
 Console.WriteLine();
 var employee = new EmployeeInFile("Jacek", "Jaxiewicz");
-var statistics = employee.GetStatistics();
+//var statistics = employee.GetStatistics();
 
-employee.ToString();
-Console.WriteLine($"Avarage1: {statistics.Average}");
-Console.WriteLine($"Min: {statistics.Min}");
-Console.WriteLine($"Max: {statistics.Max}");
-Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
+////employee.ToString();
+//Console.WriteLine($"Avarage1: {statistics.Average}");
+//Console.WriteLine($"Min: {statistics.Min}");
+//Console.WriteLine($"Max: {statistics.Max}");
+//Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
 
 
 while (true)
@@ -33,12 +33,12 @@ while (true)
     }
 }
 
-var statistics2 = employee.GetStatistics();
+//var statistics2 = employee.GetStatistics();
 
-Console.WriteLine($"Avarage1: {statistics2.Average}");
-Console.WriteLine($"Min: {statistics2.Min}");
-Console.WriteLine($"Max: {statistics2.Max}");
-Console.WriteLine($"AvargeLetter: {statistics2.AverageLetter}");
+//Console.WriteLine($"Avarage1: {statistics2.Average}");
+//Console.WriteLine($"Min: {statistics2.Min}");
+//Console.WriteLine($"Max: {statistics2.Max}");
+//Console.WriteLine($"AvargeLetter: {statistics2.AverageLetter}");
 
 
 
