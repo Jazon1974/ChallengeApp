@@ -1,7 +1,11 @@
 ﻿namespace ChallengeApp
 {
-    public abstract class EmployeeBase : IEmployee
+        public abstract class EmployeeBase : IEmployee
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+        
+        public event GradeAddedDelegate GradeAdded;
+
         private List<float> grades = new List<float>();
 
 
@@ -39,5 +43,7 @@
 
 
         public abstract Statistics GetStatistics();
+
+      //  public abstract void  GradeAddedDelegate();
     }
 }

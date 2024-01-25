@@ -2,6 +2,10 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+        
+        public event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
@@ -28,6 +32,11 @@
                     if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
                     {
                         writer.WriteLine(gradeAsFloat);
+
+                        if (GradeAdded != null)
+                        {
+                            GradeAdded(this, new EventArgs());
+                        }
                     }
                     else
                     {
@@ -37,6 +46,10 @@
                 else if (char.TryParse(grade, out char gradeAsChar))
                 {
                     writer.WriteLine(gradeAsChar);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
                 else
                 {
@@ -92,6 +105,9 @@
         {
             throw new NotImplementedException();
         }
+    
+        
     }
+
 }
 

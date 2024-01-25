@@ -7,11 +7,19 @@ Console.WriteLine();
 var employee = new EmployeeInFile("Jacek", "Jaxiewicz");
 //var statistics = employee.GetStatistics();
 
-////employee.ToString();
+//employee.ToString();
 //Console.WriteLine($"Avarage1: {statistics.Average}");
 //Console.WriteLine($"Min: {statistics.Min}");
 //Console.WriteLine($"Max: {statistics.Max}");
 //Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
+employee.GradeAdded += EmployeeGradeAdded;
+
+//employee.AddGrade(0.6f);
+void EmployeeGradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
+
 
 
 while (true)
@@ -25,7 +33,8 @@ while (true)
     }
     try
     {
-       employee.AddGrade(input);
+        employee.AddGrade(input);
+       // employee.GradeAdded -= EmployeeGradeAdded;
     }
     catch (Exception e)
     {
@@ -33,12 +42,12 @@ while (true)
     }
 }
 
-//var statistics2 = employee.GetStatistics();
+//var statistics = employee.GetStatistics();
 
-//Console.WriteLine($"Avarage1: {statistics2.Average}");
-//Console.WriteLine($"Min: {statistics2.Min}");
-//Console.WriteLine($"Max: {statistics2.Max}");
-//Console.WriteLine($"AvargeLetter: {statistics2.AverageLetter}");
+//Console.WriteLine($"Avarage1: {statistics.Average}");
+//Console.WriteLine($"Min: {statistics.Min}");
+//Console.WriteLine($"Max: {statistics.Max}");
+//Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
 
 
 
