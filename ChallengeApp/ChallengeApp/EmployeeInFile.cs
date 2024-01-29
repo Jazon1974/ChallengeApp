@@ -6,9 +6,6 @@
         public override event GradeAddedDelegate GradeAdded;
 
 
-        private List<float> grades = new List<float>();
-
-
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname)
             : base(name, surname)
@@ -22,8 +19,6 @@
             {
                 float gradeAsFloat = grade;
                 writer.WriteLine(gradeAsFloat);
-                this.grades.Add(gradeAsFloat);
-
             }
             if (GradeAdded != null)
             {
@@ -41,8 +36,6 @@
                     if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
                     {
                         writer.WriteLine(gradeAsFloat);
-                        this.grades.Add(gradeAsFloat);
-
 
                         if (GradeAdded != null)
                         {
@@ -56,24 +49,24 @@
                 }
                 else if (char.TryParse(grade, out char gradeAsChar))
                 {
-                    writer.WriteLine(gradeAsChar);
+                    // writer.WriteLine(gradeAsChar);
 
                     switch (gradeAsChar)
                     {
                         case 'A' or 'a':
-                            this.grades.Add(100);
+                            writer.WriteLine(100);
                             break;
                         case 'B' or 'b':
-                            this.grades.Add(80);
+                            writer.WriteLine(80);
                             break;
                         case 'C' or 'c':
-                            this.grades.Add(60);
+                            writer.WriteLine(60);
                             break;
                         case 'D' or 'd':
-                            this.grades.Add(40);
+                            writer.WriteLine(40);
                             break;
                         case 'E' or 'e':
-                            this.grades.Add(20);
+                            writer.WriteLine(20);
                             break;
                         default:
                             throw new Exception("Wrong letter. Letters A-E allowed");
@@ -97,7 +90,6 @@
             {
                 float gradeAsFloat = (float)grade;
                 writer.WriteLine(gradeAsFloat);
-                this.grades.Add(gradeAsFloat);
             }
         }
 
@@ -107,7 +99,6 @@
             using (var writer = File.AppendText(fileName))
             {
                 writer.WriteLine(grade);
-                this.grades.Add(grade);
             }
         }
 
@@ -123,13 +114,27 @@
         public override Statistics GetStatistics()
 
         {
-            var statistics = new Statistics();
+            var result = new Statistics();
 
-            foreach (var gradeAsFloat in this.grades)
+            if (File.Exists(fileName))
             {
-                statistics.AddGrade(gradeAsFloat);
+                using (var reader = File.OpenText(fileName))
+                {
+                    var line = reader.ReadLine();
+                    int countline = 1;
+                    Console.WriteLine("Liczby z pliku");
+                    while (line != null)
+                    {
+                        var number = float.Parse(line);
+                        Console.WriteLine(number);
+                        result.AddGrade(number);
+                        line = reader.ReadLine();
+                        countline++;
+                    }
+                }
+
             }
-            return statistics;
+            return result;
         }
     }
 }

@@ -5,16 +5,9 @@ Console.WriteLine("==============================================");
 Console.WriteLine("Jeżeli chcesz wyjsć wpisz zamiast oceny literę q");
 Console.WriteLine();
 var employee = new EmployeeInFile("Jacek", "Jaxiewicz");
-//var statistics = employee.GetStatistics();
 
-//employee.ToString();
-//Console.WriteLine($"Avarage1: {statistics.Average}");
-//Console.WriteLine($"Min: {statistics.Min}");
-//Console.WriteLine($"Max: {statistics.Max}");
-//Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
 employee.GradeAdded += EmployeeGradeAdded;
 
-//employee.AddGrade(0.6f);
 void EmployeeGradeAdded(object sender, EventArgs args)
 {
     Console.WriteLine("Dodano nową ocenę");
