@@ -2,9 +2,7 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
-
         public override event GradeAddedDelegate GradeAdded;
-
 
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname)
@@ -17,12 +15,8 @@
             using (var writer = File.AppendText(fileName))
 
             {
-                float gradeAsFloat = grade;
-                writer.WriteLine(gradeAsFloat);
-            }
-            if (GradeAdded != null)
-            {
-                GradeAdded(this, new EventArgs());
+                string gradeAsFloat = grade.ToString();
+                AddGrade(gradeAsFloat);
             }
         }
 
@@ -49,8 +43,6 @@
                 }
                 else if (char.TryParse(grade, out char gradeAsChar))
                 {
-                    // writer.WriteLine(gradeAsChar);
-
                     switch (gradeAsChar)
                     {
                         case 'A' or 'a':
@@ -88,17 +80,17 @@
         {
             using (var writer = File.AppendText(fileName))
             {
-                float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
+                string gradeAsFloat = grade.ToString();
+                AddGrade(gradeAsFloat);
             }
         }
-
 
         public override void AddGrade(float grade)
         {
             using (var writer = File.AppendText(fileName))
             {
-                writer.WriteLine(grade);
+                string gradeAsFloat = grade.ToString();
+                AddGrade(gradeAsFloat);
             }
         }
 
@@ -106,13 +98,12 @@
         {
             using (var writer = File.AppendText(fileName))
             {
-                float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
+                string gradeAsFloat = grade.ToString();
+                AddGrade(gradeAsFloat);
             }
-        }
+        }    
 
         public override Statistics GetStatistics()
-
         {
             var result = new Statistics();
 
