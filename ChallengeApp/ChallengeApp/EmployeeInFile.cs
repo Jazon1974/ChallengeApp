@@ -1,4 +1,6 @@
-﻿namespace ChallengeApp
+﻿using System.Diagnostics;
+
+namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
@@ -12,61 +14,38 @@
 
         public override void AddGrade(int grade)
         {
-            using (var writer = File.AppendText(fileName))
-
-            {
-                string gradeAsFloat = grade.ToString();
-                AddGrade(gradeAsFloat);
-            }
+            float result = (float)grade;
+            AddGrade(result);
         }
 
-        public override void AddGrade(string grade)
+        public override void AddGrade(string input)
         {
-            using (var writer = File.AppendText(fileName))
             {
-                if (float.TryParse(grade, out float gradeAsFloat))
+                if (float.TryParse(input, out float grade))
                 {
-
-                    if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
-                    {
-                        writer.WriteLine(gradeAsFloat);
-
-                        if (GradeAdded != null)
-                        {
-                            GradeAdded(this, new EventArgs());
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Number out of range 0-100");
-                    }
+                    AddGrade(grade);
                 }
-                else if (char.TryParse(grade, out char gradeAsChar))
+                else if (char.TryParse(input, out char gradeAsChar))
                 {
                     switch (gradeAsChar)
                     {
                         case 'A' or 'a':
-                            writer.WriteLine(100);
+                            AddGrade((float)100);
                             break;
                         case 'B' or 'b':
-                            writer.WriteLine(80);
+                            AddGrade((float)80);
                             break;
                         case 'C' or 'c':
-                            writer.WriteLine(60);
+                            AddGrade((float)60);
                             break;
                         case 'D' or 'd':
-                            writer.WriteLine(40);
+                            AddGrade((float)40);
                             break;
                         case 'E' or 'e':
-                            writer.WriteLine(20);
+                            AddGrade((float)20);
                             break;
                         default:
                             throw new Exception("Wrong letter. Letters A-E allowed");
-                    }
-
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
                     }
                 }
                 else
@@ -78,30 +57,34 @@
 
         public override void AddGrade(double grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                string gradeAsFloat = grade.ToString();
-                AddGrade(gradeAsFloat);
-            }
+            float result = (float)grade;
+            AddGrade(result);
         }
 
         public override void AddGrade(float grade)
         {
             using (var writer = File.AppendText(fileName))
-            {
-                string gradeAsFloat = grade.ToString();
-                AddGrade(gradeAsFloat);
-            }
+
+                if (grade >= 0 && grade <= 100)
+                {
+                    writer.WriteLine(grade);
+
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    throw new Exception("Number out of range 0-100");
+                }
         }
 
         public override void AddGrade(char grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                string gradeAsFloat = grade.ToString();
-                AddGrade(gradeAsFloat);
-            }
-        }    
+            float result = (float)grade;
+            AddGrade(result);
+        }
 
         public override Statistics GetStatistics()
         {
