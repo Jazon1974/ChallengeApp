@@ -2,9 +2,12 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
-        public delegate void GradeAddedDelegate(object sender, EventArgs args);
-        
-        public event GradeAddedDelegate GradeAdded;
+
+        public override event GradeAddedDelegate GradeAdded;
+
+
+        private List<float> grades = new List<float>();
+
 
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname)
@@ -19,6 +22,12 @@
             {
                 float gradeAsFloat = grade;
                 writer.WriteLine(gradeAsFloat);
+                this.grades.Add(gradeAsFloat);
+
+            }
+            if (GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
             }
         }
 
@@ -32,6 +41,8 @@
                     if (gradeAsFloat >= 0 && gradeAsFloat <= 100)
                     {
                         writer.WriteLine(gradeAsFloat);
+                        this.grades.Add(gradeAsFloat);
+
 
                         if (GradeAdded != null)
                         {
@@ -46,6 +57,28 @@
                 else if (char.TryParse(grade, out char gradeAsChar))
                 {
                     writer.WriteLine(gradeAsChar);
+
+                    switch (gradeAsChar)
+                    {
+                        case 'A' or 'a':
+                            this.grades.Add(100);
+                            break;
+                        case 'B' or 'b':
+                            this.grades.Add(80);
+                            break;
+                        case 'C' or 'c':
+                            this.grades.Add(60);
+                            break;
+                        case 'D' or 'd':
+                            this.grades.Add(40);
+                            break;
+                        case 'E' or 'e':
+                            this.grades.Add(20);
+                            break;
+                        default:
+                            throw new Exception("Wrong letter. Letters A-E allowed");
+                    }
+
                     if (GradeAdded != null)
                     {
                         GradeAdded(this, new EventArgs());
@@ -64,31 +97,17 @@
             {
                 float gradeAsFloat = (float)grade;
                 writer.WriteLine(gradeAsFloat);
+                this.grades.Add(gradeAsFloat);
             }
         }
 
-        public override void AddGrade(decimal grade)
-        {
-            using (var writer = File.AppendText(fileName))
-            {
-                float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
-            }
-        }
 
-        public override void AddGrade(long grade)
-        {
-            using (var writer = File.AppendText(fileName))
-            {
-                float gradeAsFloat = (float)grade;
-                writer.WriteLine(gradeAsFloat);
-            }
-        }
         public override void AddGrade(float grade)
         {
             using (var writer = File.AppendText(fileName))
             {
                 writer.WriteLine(grade);
+                this.grades.Add(grade);
             }
         }
 
@@ -102,12 +121,16 @@
         }
 
         public override Statistics GetStatistics()
-        {
-            throw new NotImplementedException();
-        }
-    
-        
-    }
 
+        {
+            var statistics = new Statistics();
+
+            foreach (var gradeAsFloat in this.grades)
+            {
+                statistics.AddGrade(gradeAsFloat);
+            }
+            return statistics;
+        }
+    }
 }
 

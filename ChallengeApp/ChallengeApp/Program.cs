@@ -34,7 +34,6 @@ while (true)
     try
     {
         employee.AddGrade(input);
-       // employee.GradeAdded -= EmployeeGradeAdded;
     }
     catch (Exception e)
     {
@@ -42,12 +41,12 @@ while (true)
     }
 }
 
-//var statistics = employee.GetStatistics();
+var statistics = employee.GetStatistics();
 
-//Console.WriteLine($"Avarage1: {statistics.Average}");
-//Console.WriteLine($"Min: {statistics.Min}");
-//Console.WriteLine($"Max: {statistics.Max}");
-//Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
+Console.WriteLine($"Avarage1: {statistics.Average}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
+Console.WriteLine($"AvargeLetter: {statistics.AverageLetter}");
 
 
 

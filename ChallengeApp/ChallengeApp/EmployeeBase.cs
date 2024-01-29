@@ -4,7 +4,7 @@
     {
         public delegate void GradeAddedDelegate(object sender, EventArgs args);
         
-        public event GradeAddedDelegate GradeAdded;
+        public abstract event GradeAddedDelegate GradeAdded;
 
         private List<float> grades = new List<float>();
 
@@ -33,10 +33,10 @@
         public abstract void AddGrade(double grade);
 
 
-        public abstract void AddGrade(decimal grade);
+        //public abstract void AddGrade(decimal grade);
 
 
-        public abstract void AddGrade(long grade);
+       // public abstract void AddGrade(long grade);
 
 
         public abstract void AddGrade(char grade);
@@ -44,6 +44,6 @@
 
         public abstract Statistics GetStatistics();
 
-      //  public abstract void  GradeAddedDelegate();
+      
     }
 }
